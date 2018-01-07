@@ -5,25 +5,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jencisov.smack.LoginActivity"
+    tools:context="com.jencisov.smack.CreateUserActivity"
     >
 
     <EditText
-        android:id="@+id/loginEmailEt"
+        android:id="@+id/createUserNameEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:hint="email"
-        android:inputType="textEmailAddress"
+        android:hint="user name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
     <EditText
-        android:id="@+id/loginPasswordEt"
+        android:id="@+id/createUserEmailEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserNameEt"
+        />
+
+    <EditText
+        android:id="@+id/createUserPasswordEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -33,50 +46,63 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmailEt"
-        />
-
-    <Button
-        android:id="@+id/loginLoginBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorPrimary"
-        android:onClick="loginLoginBtnClicked"
-        android:text="login"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPasswordEt"
+        app:layout_constraintTop_toBottomOf="@+id/createUserEmailEt"
         />
 
     <TextView
         android:id="@+id/generateAvatarTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Don't have an account?"
+        android:layout_marginTop="24dp"
+        android:text="Tap to generate user avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginLoginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/createUserPasswordEt"
+        />
+
+    <ImageView
+        android:id="@+id/createAvatarIv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@null"
+        android:onClick="generateUserAvatar"
+        android:src="@drawable/profiledefault"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generateAvatarTv"
         />
 
     <Button
-        android:id="@+id/loginCreateUserBtn"
+        android:id="@+id/backgroundColorBtn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
-        android:onClick="loginCreateUserBtnClicked"
-        android:text="sign up here"
+        android:onClick="generateBackgrounColorBtnClicked"
+        android:text="generate background color"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generateAvatarTv"
+        app:layout_constraintTop_toBottomOf="@+id/createAvatarIv"
+        />
+
+    <Button
+        android:id="@+id/createUserBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:background="@color/colorPrimary"
+        android:onClick="createUserClicked"
+        android:text="create user"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         />
 
 </android.support.constraint.ConstraintLayout>
