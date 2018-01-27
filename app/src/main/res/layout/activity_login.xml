@@ -53,7 +53,7 @@
         />
 
     <TextView
-        android:id="@+id/generateAvatarTv"
+        android:id="@+id/loginDontHaveAccountTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -76,7 +76,17 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generateAvatarTv"
+        app:layout_constraintTop_toBottomOf="@+id/loginDontHaveAccountTv"
+        />
+
+    <ProgressBar
+        android:id="@+id/loginPb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/loginDontHaveAccountTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         />
 
 </android.support.constraint.ConstraintLayout>

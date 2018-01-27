@@ -61,7 +61,7 @@ class CreateUserActivity : AppCompatActivity() {
         val email = createUserEmailEt.text.toString().trim()
         val password = createUserPasswordEt.text.toString().trim()
 
-        if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+        if (userName.isEmpty() or email.isEmpty() or password.isEmpty()) {
             Toast.makeText(this, "Make sure user name, email and password are filled in", Toast.LENGTH_SHORT).show()
             disableProgressBar()
             return
