@@ -1,12 +1,16 @@
 package com.jencisov.smack.controller
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.LocalBroadcastManager
 import android.view.View
+import android.widget.Toast
 import com.jencisov.smack.R
 import com.jencisov.smack.model.User
 import com.jencisov.smack.services.AuthService
+import com.jencisov.smack.utils.BROADCAST_USER_DATA_CHANGE
 import kotlinx.android.synthetic.main.activity_create_user.*
 import java.util.*
 
@@ -51,9 +55,17 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     fun createUserClicked(view: View) {
-        val userName = createUserNameEt.text.toString()
-        val email = createUserEmailEt.text.toString()
-        val password = createUserPasswordEt.text.toString()
+        enableProgressBar()
+
+        val userName = createUserNameEt.text.toString().trim()
+        val email = createUserEmailEt.text.toString().trim()
+        val password = createUserPasswordEt.text.toString().trim()
+
+        if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+            Toast.makeText(this, "Make sure user name, email and password are filled in", Toast.LENGTH_SHORT).show()
+            disableProgressBar()
+            return
+        }
 
         AuthService.registerUser(this, email, password) { registerComplete ->
             if (registerComplete) {
@@ -61,13 +73,43 @@ class CreateUserActivity : AppCompatActivity() {
                     if (loginComplete) {
                         AuthService.createUser(this, User(userName, email, userAvatar, avatarColor)) { createComplete ->
                             if (createComplete) {
+
+                                val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
+                                LocalBroadcastManager.getInstance(this).sendBroadcast(userDataChange)
+
+                                disableProgressBar()
                                 finish()
+                            } else {
+                                errorToast()
                             }
                         }
+                    } else {
+                        errorToast()
                     }
                 }
+            } else {
+                errorToast()
             }
         }
+    }
+
+    private fun errorToast() {
+        Toast.makeText(this, "Something went wront, please try again", Toast.LENGTH_SHORT).show()
+        disableProgressBar()
+    }
+
+    private fun enableProgressBar() {
+        createUserPb.visibility = View.VISIBLE
+        createUserBtn.isEnabled = false
+        createAvatarIv.isEnabled = false
+        backgroundColorBtn.isEnabled = false
+    }
+
+    private fun disableProgressBar() {
+        createUserPb.visibility = View.GONE
+        createUserBtn.isEnabled = true
+        createAvatarIv.isEnabled = true
+        backgroundColorBtn.isEnabled = true
     }
 
 }
