@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.jencisov.smack.R
 import com.jencisov.smack.services.AuthService
+import com.jencisov.smack.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -60,20 +61,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun enableProgressBar() {
         loginPb.visibility = View.VISIBLE
-        loginLoginBtn.isEnabled = true
+        loginLoginBtn.isEnabled = false
     }
 
     private fun disableProgressBar() {
         loginPb.visibility = View.GONE
-        loginLoginBtn.isEnabled = false
-    }
-
-    fun hideKeyboard() {
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-        if (inputManager.isAcceptingText) {
-            inputManager.hideSoftInputFromWindow(currentFocus.windowToken, 0)
-        }
+        loginLoginBtn.isEnabled = true
     }
 
 }
